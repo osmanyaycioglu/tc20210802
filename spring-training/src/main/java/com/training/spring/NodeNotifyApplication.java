@@ -1,5 +1,8 @@
 package com.training.spring;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -30,12 +33,26 @@ public class NodeNotifyApplication implements ApplicationRunner {
     @Autowired
     private IHello   helloEsp;
 
-    @Autowired
-    @Qualifier("DYN")
-    private IHello   hhp;
+
+    private IHello hhp;
 
     @Value("${test.prop}")
-    private String   testProp;
+    private String testProp;
+
+    @Autowired
+    public void methodWire(@Qualifier("DYN") final IHello hhp) {
+        this.hhp = hhp;
+    }
+
+    @PostConstruct
+    public void constructDanSonra() {
+        System.out.println("NodeNotifyApplication yaratıldı");
+    }
+
+    @PreDestroy
+    public void destroyDanOnce() {
+        System.out.println("NodeNotifyApplication öldürülüyor");
+    }
 
     @Override
     public void run(final ApplicationArguments argsParam) throws Exception {
