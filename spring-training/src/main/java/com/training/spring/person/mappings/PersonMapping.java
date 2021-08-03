@@ -13,4 +13,13 @@ public class PersonMapping {
         personDTOLoc.setSurname(person.getSurname());
         return personDTOLoc;
     }
+
+    public static Person DTOToPerson(final PersonDTO personDTOParam) {
+        Person personLoc = new Person();
+        personLoc.setHeight(personDTOParam.getHeight());
+        personLoc.setWeight(personDTOParam.getWeight());
+        personLoc.setName(personDTOParam.getName());
+        personLoc.setSurname(personDTOParam.getSurname());
+        return personLoc;
+    }
 }
