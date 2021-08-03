@@ -1,7 +1,10 @@
 package com.training.spring.rest;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,7 +44,21 @@ public class GreetingRest {
 
     @PostMapping("/hello4")
     public String hello4(@RequestBody final GreetingInput gi) {
-        return "3: " + this.helloOp.sayHello(gi.getName() + " " + gi.getSurname() + " " + gi.getAge());
+        return "4: " + this.helloOp.sayHello(gi.getName() + " " + gi.getSurname() + " " + gi.getAge());
+    }
+
+    @GetMapping("/hello/{command}")
+    public ResponseEntity<?> hello(@PathVariable("command") final String command,
+                                   final HttpServletRequest hsp) {
+        switch (command) {
+            case "add":
+                break;
+            case "remove":
+                break;
+            default:
+                break;
+        }
+        return ResponseEntity.ok("1: " + this.helloOp.sayHello("null"));
     }
 
 

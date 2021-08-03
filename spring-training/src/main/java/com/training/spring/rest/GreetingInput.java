@@ -3,9 +3,9 @@ package com.training.spring.rest;
 
 public class GreetingInput {
 
-    private String name;
-    private String surname;
-    private int    age;
+    private String  name;
+    private String  surname;
+    private Integer age;
 
     public String getName() {
         return this.name;
@@ -23,11 +23,13 @@ public class GreetingInput {
         this.surname = surnameParam;
     }
 
-    public int getAge() {
+
+    public Integer getAge() {
         return this.age;
     }
 
-    public void setAge(final int ageParam) {
+
+    public void setAge(final Integer ageParam) {
         this.age = ageParam;
     }
 
