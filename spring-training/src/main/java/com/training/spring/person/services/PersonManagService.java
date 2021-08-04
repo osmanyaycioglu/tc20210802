@@ -5,20 +5,20 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.training.spring.person.data.PersonStorage;
+import com.training.spring.person.data.IPersonDao;
 
 @Service
 public class PersonManagService {
 
     @Autowired
-    private PersonStorage ps;
+    private IPersonDao personDao;
 
     public void add(final PersonDTO person) {
-        this.ps.add(person);
+        this.personDao.save(person);
     }
 
     public List<PersonDTO> searchByName(final String nameParam) {
-        return this.ps.searchByName(nameParam);
+        return this.personDao.findByName(nameParam);
     }
 
 }
