@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,6 +24,17 @@ public class PersonController {
 
     @Autowired
     private PersonManagService personService;
+
+    @GetMapping("/hello")
+    @PreAuthorize("hasAnyRole('ADMIN')")
+    public String hello() {
+        return "Hello world";
+    }
+
+    @GetMapping("/hello2")
+    public String hello2() {
+        return "Hello world";
+    }
 
     @PostMapping("/add")
     public String add(@Validated @RequestBody final Person person) {
